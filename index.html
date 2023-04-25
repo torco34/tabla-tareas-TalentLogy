@@ -5,16 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Tabla de tareas</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Tabla de tareas</h1>
-    </div>
-    <form action="">
-        
+    <form id="form">
+      <label for="note-title">Título</label>
+      <input type="text" id="title" name="note-title" required />
+      <label for="note-body">Cuerpo:</label>
+      <textarea id="textBody" name="note-body" required></textarea>
+      <button type="submit">Agregar</button>
     </form>
-
+    <h2>Lista Agregada</h2>
+    <div id="element">
+      ..
+    </div>
+    <script src="./js/main.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
