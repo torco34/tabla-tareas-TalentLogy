@@ -9,17 +9,23 @@
     <title>Tabla de tareas</title>
   </head>
   <body>
-    <form id="form">
-      <label for="note-title">Título</label>
-      <input type="text" id="title" name="note-title" required />
-      <label for="note-body">Cuerpo:</label>
-      <textarea id="textBody" name="note-body" required></textarea>
-      <button type="submit">Agregar</button>
-    </form>
-    <h2>Lista Agregada</h2>
-    <div id="element">
-      ..
-    </div>
+    <section>
+      <h2>Agregar nota</h2>
+      <form>
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" required />
+        <br />
+        <label for="cuerpo">Cuerpo:</label>
+        <textarea id="cuerpo" name="cuerpo" required></textarea>
+        <br />
+        <button type="submit">Agregar</button>
+      </form>
+    </section>
+    <section>
+      <h2>Notas</h2>
+      <div id="notas"></div>
+    </section>
+
     <script src="./js/main.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
