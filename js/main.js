@@ -27,7 +27,7 @@ function crearNotaDiv(titulo, cuerpo) {
   //class de div
   notaDiv.classList.add("nota");
   //creando un h3 para el titulo
-  const tituloH3 = document.createElement("h3");
+  const tituloH3 = document.createElement("h2");
   tituloH3.textContent = titulo;
   //   creando body del p
   const cuerpoP = document.createElement("p");

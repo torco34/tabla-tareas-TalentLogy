@@ -1,48 +1,50 @@
-const formulario = document.querySelector('form');
-const contenedorNotas = document.querySelector('#notas');
+const formulario = document.querySelector("form");
+const element = document.getElementById("element");
+let notas = JSON.parse(localStorage.getItem("notas")) || [];
 
-// Obtener notas del localStorage
-let notas = JSON.parse(localStorage.getItem('notas')) || [];
-
-// Mostrar notas en la página
-notas.forEach(nota => {
-  const notaDiv = crearNotaDiv(nota.titulo, nota.cuerpo);
-  contenedorNotas.appendChild(notaDiv);
+notas.forEach((nota) => {
+  const notaDiv = creandoCard(nota.titulo, nota.cuerpo);
+  //   element.appendChild(notaDiv);
+  //   console.log(contenedorNotas.appendChild(notaDiv));
 });
 
-// Agregar evento al formulario para agregar nota
-formulario.addEventListener('submit', e => {
+formulario.addEventListener("submit", (e) => {
   e.preventDefault();
   const titulo = formulario.titulo.value;
-  const cuerpo = formulario.cuerpo.value;
+  const cuerpo = formulario.body.value;
+  console.log(titulo);
+  console.log(cuerpo);
   const nota = { titulo, cuerpo };
   notas.push(nota);
-  localStorage.setItem('notas', JSON.stringify(notas));
-  const notaDiv = crearNotaDiv(titulo, cuerpo);
-  contenedorNotas.appendChild(notaDiv);
+  localStorage.setItem("notas", JSON.stringify(notas));
+  const notaDiv = creandoCard(titulo, cuerpo);
+  console.log(notaDiv, "nota dis");
   formulario.reset();
 });
+// creando nota
+function creandoCard(titulo, cuerpo) {
+  console.log(element, "elemento");
+  const elementCreado = ` 
+  <div class=" row container-card border" >
+   <div class="col-6 border p-2">
+    <div class="border">
+     <h3 class="border text-center" >Titulo:</h3>
+     <h5 class="card-title text-center">${titulo}</h5>
+     </div>
+     <h3 class="text-center border">Cuerpo</h3>
+     <p class="card-text border">${cuerpo}</p>
+      <div class="botones" >
+     <button id="btnEliminar"class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
+    <button class="btn btn-dark">Editar</button>
+    </div>
+ </div>
+</div> 
+  `;
+  element.innerHTML += elementCreado;
+  console.log(element, "este es que hay aqui");
+  console.log(btnEliminar, "boton eliminar");
 
-// Función para crear el div de una nota
-function crearNotaDiv(titulo, cuerpo) {
-  const notaDiv = document.createElement('div');
-  notaDiv.classList.add('nota');
-  const tituloH3 = document.createElement('h3');
-  tituloH3.textContent = titulo;
-  const cuerpoP = document.createElement('p');
-  cuerpoP.textContent = cuerpo;
-  notaDiv.appendChild(tituloH3);
-  notaDiv.appendChild(cuerpoP);
-  const eliminarBtn = document.createElement('button');
-  eliminarBtn.textContent = 'Eliminar';
-  eliminarBtn.addEventListener('click', () => {
-    const notaIndex = notas.findIndex(nota => nota.titulo === titulo && nota.cuerpo === cuerpo);
-    notas.splice(notaIndex, 1);
-    localStorage.setItem('notas', JSON.stringify(notas));
-    notaDiv.remove();
+  element.addEventListener("click", () => {
+    console.log("hola")
   });
-  notaDiv.appendChild(eliminarBtn);
-  const editarBtn = document.createElement('button');
-  editarBtn.textContent = 'Editar';
-  editarBtn.addEventListener('click', () => {
-    const nuevoTitulo = prompt('Ingrese el nuevo título
+}
