@@ -6,8 +6,13 @@ const botones = document.querySelector("#botones");
 const check = "fa-check-circle";
 const uncheck = "bi-circle";
 const line = "linea-tralaght";
-let LIST;
-let id;
+let id = 0;
+
+let notas = JSON.parse(localStorage.getItem("notas")) || [];
+
+notas.forEach((nota) => {
+  const addTarea = agregarTarea(nota.tarea, nota.title);
+});
 
 const FECHA = new Date();
 fecha.innerHTML = FECHA.toLocaleDateString("es", {
@@ -16,58 +21,56 @@ fecha.innerHTML = FECHA.toLocaleDateString("es", {
   day: "numeric",
 });
 
-function agregarTarea(tarea, title, id, realizado, eliminado) {
+function agregarTarea(title, tarea, id, realizado, eliminado) {
+  console.log(realizado);
   if (eliminado) {
-    return;
+    // return;
   }
-  const REALIZADO = realizado ? check : uncheck;
-  const LINE = realizado ? line : "";
+  // const REALIZADO = realizado ? check : uncheck;
+  // const LINE = realizado ? line : "";
 
   const element = `
   
 <li id="elemento">
-  <i id="botones" class="${REALIZADO} ${LINE}" data="realizado" id="${id}" ></i>
+  <i id="botones" class="" data="realizado" id="${id}" ></i>
   <span class="text-center">
-   <p class="text ${LINE}" >TITULO: ${title}</p>
-   <p class="text2 ${LINE} " >TAREA:  ${tarea}</p>
+   <p class="text " >TITULO:  ${title}</p>
+   <p class="text2  " >TAREA: 
+   ${tarea}</p>
   </span>
   <i class="bi bi-trash3-fill" data="eliminado" id="${id}"></i>
 </li>`;
   lista.insertAdjacentHTML("beforeend", element);
-  console.log(lista);
 }
 
 // tarea realizada
 function tareaRealizado(element) {
+  console.log(element, "hola numdo");
   element.classList.toggle(check);
   element.classList.toggle(uncheck);
   element.parentNode.querySelector(".text").classList.toggle(line);
   element.parentNode.querySelector(".text2").classList.toggle(line);
-  LIST[element.id].realizado = LIST[element.id].realizado ? false : true;
 }
 // tarea eliminada
-function tareaEliminad(element) {
+function tareaEliminad(element, tarea, title) {
+  const notaIndex = notas.findIndex(
+    (nota) => nota.title === title && nota.tarea === tarea
+  );
+  notas.splice(notaIndex, 1);
+  localStorage.setItem("notas", JSON.stringify(notas));
   element.parentNode.parentNode.removeChild(element.parentNode);
-  LIST[element.id].eliminado = true;
 }
 botones.addEventListener("click", (e) => {
-  console.log("hola como estas");
   e.preventDefault();
   const title = input2.value;
   const tarea = input.value;
-
+  const nota = { title, tarea };
+  notas.push(nota);
+  localStorage.setItem("notas", JSON.stringify(notas));
   if (tarea) {
-    // agregarTarea(title);
     agregarTarea(title, tarea, id, false, false);
-    LIST.push({
-      title: title,
-      tarea: tarea,
-      id: id,
-      realizado: false,
-      eliminado: false,
-    });
   }
-  localStorage.setItem("TODO", JSON.stringify(LIST));
+
   input.value = "";
   input2.value = "";
   id++;
@@ -78,46 +81,25 @@ document.addEventListener("keyup", function (event) {
   if (event.key === "Enter") {
     const title = input2.value;
     const tarea = input.value;
-    if (tarea && title) {
+    const nota = { title, tarea };
+    notas.push(nota);
+    localStorage.setItem("notas", JSON.stringify(notas));
+
+    if (tarea) {
       agregarTarea(tarea, title, id, false, false);
-      LIST.push({
-        title: title,
-        tarea: tarea,
-        id: id,
-        realizado: false,
-        eliminado: false,
-      });
     }
-    localStorage.setItem("TODO", JSON.stringify(LIST));
     input.value = "";
     input2.value = "";
     id++;
-    console.log(LIST);
   }
 });
 lista.addEventListener("click", function (event) {
   const element = event.target;
   const elementoData = element.attributes.data.value;
+
   if (elementoData === "realizado") {
     tareaRealizado(element);
   } else if (elementoData === "eliminado") {
     tareaEliminad(element);
   }
-  localStorage.setItem("TODO", JSON.stringify(LIST));
 });
-
-let data = localStorage.getItem("TODO");
-if (data) {
-  LIST = JSON.parse(data);
-  id = LIST.length;
-  cargarLista(LIST);
-} else {
-  LIST = [];
-  id = 0;
-}
-
-function cargarLista(DATA) {
-  DATA.forEach(function (i) {
-    agregarTarea(i.tarea, i.id, i.realizado, i.eliminado);
-  });
-}

@@ -1,50 +1,92 @@
-const formulario = document.querySelector("form");
-const element = document.getElementById("element");
-let notas = JSON.parse(localStorage.getItem("notas")) || [];
+// Seleccionar elementos del DOM
+const formularioTarea = document.querySelector('#formulario-tarea');
+const inputTitulo = document.querySelector('#titulo');
+const inputDescripcion = document.querySelector('#descripcion');
+const inputFecha = document.querySelector('#fecha');
+const listaPendientes = document.querySelector('#lista-pendientes');
+const listaEnProgreso = document.querySelector('#lista-en-progreso');
+const listaCompletadas = document.querySelector('#lista-completadas');
 
-notas.forEach((nota) => {
-  const notaDiv = creandoCard(nota.titulo, nota.cuerpo);
-  //   element.appendChild(notaDiv);
-  //   console.log(contenedorNotas.appendChild(notaDiv));
-});
+// Crear array vacío para almacenar las tareas
+let tareas = [];
 
-formulario.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const titulo = formulario.titulo.value;
-  const cuerpo = formulario.body.value;
-  console.log(titulo);
-  console.log(cuerpo);
-  const nota = { titulo, cuerpo };
-  notas.push(nota);
-  localStorage.setItem("notas", JSON.stringify(notas));
-  const notaDiv = creandoCard(titulo, cuerpo);
-  console.log(notaDiv, "nota dis");
-  formulario.reset();
-});
-// creando nota
-function creandoCard(titulo, cuerpo) {
-  console.log(element, "elemento");
-  const elementCreado = ` 
-  <div class=" row container-card border" >
-   <div class="col-6 border p-2">
-    <div class="border">
-     <h3 class="border text-center" >Titulo:</h3>
-     <h5 class="card-title text-center">${titulo}</h5>
-     </div>
-     <h3 class="text-center border">Cuerpo</h3>
-     <p class="card-text border">${cuerpo}</p>
-      <div class="botones" >
-     <button id="btnEliminar"class="btn btn-danger"><i class="bi bi-trash-fill"></i></button>
-    <button class="btn btn-dark">Editar</button>
-    </div>
- </div>
-</div> 
-  `;
-  element.innerHTML += elementCreado;
-  console.log(element, "este es que hay aqui");
-  console.log(btnEliminar, "boton eliminar");
+// Función para crear una tarea
+function crearTarea(titulo, descripcion, fecha) {
+  const tarea = {
+    id: Date.now(),
+    titulo,
+    descripcion,
+    fecha,
+    lista: 'pendientes'
+  };
+  tareas.push(tarea);
+  mostrarTareas();
+}
 
-  element.addEventListener("click", () => {
-    console.log("hola")
+// Función para mostrar las tareas en las diferentes listas
+function mostrarTareas() {
+  listaPendientes.innerHTML = '';
+  listaEnProgreso.innerHTML = '';
+  listaCompletadas.innerHTML = '';
+  tareas.forEach(tarea => {
+    const itemTarea = document.createElement('li');
+    itemTarea.innerHTML = `
+      <strong>${tarea.titulo}</strong>
+      <p>${tarea.descripcion}</p>
+      <p>${tarea.fecha}</p>
+    `;
+    itemTarea.draggable = true;
+    itemTarea.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', tarea.id);
+      e.currentTarget.classList.add('dragging');
+    });
+    itemTarea.addEventListener('dragend', e => {
+      e.currentTarget.classList.remove('dragging');
+    });
+    switch (tarea.lista) {
+      case 'pendientes':
+        listaPendientes.appendChild(itemTarea);
+        break;
+      case 'en-progreso':
+        listaEnProgreso.appendChild(itemTarea);
+        break;
+      case 'completadas':
+        listaCompletadas.appendChild(itemTarea);
+        break;
+    }
   });
 }
+
+// Función para mover una tarea a otra lista
+function moverTarea(id, lista) {
+  const tarea = tareas.find(t => t.id == id);
+  tarea.lista = lista;
+  mostrarTareas();
+}
+
+// Evento para enviar el formulario y agregar una nueva tarea
+formularioTarea.addEventListener('submit', e => {
+  e.preventDefault();
+  crearTarea(inputTitulo.value, inputDescripcion.value, inputFecha.value);
+  formularioTarea.reset();
+});
+
+// Eventos para permitir arrastrar y soltar tareas para moverlas entre diferentes listas
+listaPendientes.addEventListener('dragover', e => {
+  e.preventDefault();
+  const tarea = document.querySelector('.dragging');
+  listaPendientes.appendChild(tarea);
+  moverTarea(tarea.dataset.id, 'pendientes');
+});
+listaEnProgreso.addEventListener('dragover', e => {
+  e.preventDefault();
+  const tarea = document.querySelector('.dragging');
+  listaEnProgreso.appendChild(tarea);
+  moverTarea(tarea.dataset.id, 'en-progreso');
+});
+listaCompletadas.addEventListener('dragover', e => {
+  e.preventDefault();
+  const tarea = document.querySelector('.dragging');
+  listaCompletadas.appendChild(tarea);
+  moverTarea(tarea.dataset.id, 'completadas');
+});

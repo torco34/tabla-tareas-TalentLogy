@@ -15,45 +15,43 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/stylos.css" />
     <title>Tabla index</title>
   </head>
   <body>
-    <section class="container">
-      <div class="perfil">
-        <div id="fecha"></div>
-        <h2>Bienvenido a mi tabla</h2>
-        <h4>Hecha por Torcoroma Arias Ascanio</h4>
-      </div>
-      <div class="agregar-tarea">
-        <span>Para cumplir tus metas</span>
-        <form action="" class="body-form">
-          <div class="input2">
-            <input id="input" type="text" placeholder="Titulo" />
-          </div>
-          <div class="input2">
-            <input id="input2" type="text" placeholder="Titulo" />
-          </div>
-
-          <i id="botones" class="bi bi-plus"></i>
+    <header>
+      <h1>Administrador de Tareas</h1>
+    </header>
+    <main>
+      <section id="crear-tarea">
+        <h2>Agregar Nueva Tarea</h2>
+        <form id="formulario-tarea">
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" name="titulo" />
+          <label for="descripcion">Descripción:</label>
+          <textarea id="descripcion" name="descripcion"></textarea>
+          <label for="fecha">Fecha de Vencimiento:</label>
+          <input type="date" id="fecha" name="fecha" />
+          <button type="submit">Agregar</button>
         </form>
-      </div>
-      <div class="section-tarea">
-        <h3>Tareas Pendiente</h3>
-        <ul id="lista">
-          <!-- <li>
-            <i id="botones" class="bi bi-circle"></i>
-            <span class="text-center">
-             <p class="linea-tralaght">titulo: 8pm</p>
-            <p class="linea-tralaght">Tareas:  ir al ginacio y hacer mucho ejercici</p>
-            </span>
-            <i class="bi bi-trash3-fill"></i>
-          </li> -->
-        </ul>
-      </div>
-    </section>
+      </section>
+      <section id="listas-tareas">
+        <div id="pendientes" class="lista-tareas">
+          <h2>Pendientes</h2>
+          <ul id="lista-pendientes"></ul>
+        </div>
+        <div id="en-progreso" class="lista-tareas">
+          <h2>En Progreso</h2>
+          <ul id="lista-en-progreso"></ul>
+        </div>
+        <div id="completadas" class="lista-tareas">
+          <h2>Completadas</h2>
+          <ul id="lista-completadas"></ul>
+        </div>
+      </section>
+    </main>
 
-    <script src="./js/indexx.js"></script>
+    <script src="./js/ejemplo.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
