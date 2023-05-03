@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Notas tarea</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
@@ -10,48 +9,68 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,700&display=swap"
       rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue"></i> -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/stylos.css" />
-    <title>Tabla index</title>
   </head>
   <body>
-    <header>
-      <h1>Administrador de Tareas</h1>
-    </header>
-    <main>
-      <section id="crear-tarea">
-        <h2>Agregar Nueva Tarea</h2>
-        <form id="formulario-tarea">
-          <label for="titulo">Título:</label>
-          <input type="text" id="titulo" name="titulo" />
-          <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion"></textarea>
-          <label for="fecha">Fecha de Vencimiento:</label>
-          <input type="date" id="fecha" name="fecha" />
-          <button type="submit">Agregar</button>
-        </form>
-      </section>
-      <section id="listas-tareas">
-        <div id="pendientes" class="lista-tareas">
-          <h2>Pendientes</h2>
-          <ul id="lista-pendientes"></ul>
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div class="col-mad-10">
+            <div class="text-superios">
+              <h3 id="fecha"></h3>
+              <hr class="border border-3 border-secondary" width="200px" />
+              <h1>Notas de Tareas</h1>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="container-form">
+              <form>
+                <div class="continer-input">
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Agregar titulo:"
+                  />
+                </div>
+                <div class="container-tarea">
+                  <textarea
+                    id="body"
+                    name="body"
+                    placeholder="Agregar texto"
+                  ></textarea>
+                </div>
+                <div class="buton">
+                  <button type="submit">Agregar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <h2 class="agregadas">Notas Agregadas:</h2>
+            <div class="row">
+              <div id="note-container" class="note-container"></div>
+            </div>
+          </div>
         </div>
-        <div id="en-progreso" class="lista-tareas">
-          <h2>En Progreso</h2>
-          <ul id="lista-en-progreso"></ul>
+      </div>
+    </div>
+    <div class="p-4"></div>
+    <footer>
+      <div class="row">
+        <div class="col-md-12 footer">
+          <h4>Hecha por Torcoroma Arias Ascanio</h4>
         </div>
-        <div id="completadas" class="lista-tareas">
-          <h2>Completadas</h2>
-          <ul id="lista-completadas"></ul>
-        </div>
-      </section>
-    </main>
+        <div class="col"></div>
+      </div>
+    </footer>
 
-    <script src="./js/ejemplo.js"></script>
     <script src="./bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/tarea.js"></script>
   </body>
 </html>

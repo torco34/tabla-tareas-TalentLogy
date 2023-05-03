@@ -9,22 +9,21 @@
 :root {
   --pink: #d885a3;
   --purple: #655d8a;
-  --blue: #7897ab;
-  --piel: #fdceb9;
+  --blue: #F2F2F2;
+  --piel: #c1c1c1;
   --whether: #fff;
+  --black: #393646;
 }
 body {
-  background-image: radial-gradient(
-    circle at 50% 50%,
-    var(--blue) 0.5%,
-    var(--purple) 100%
-  );
+  background-color: var(--blue);
   font-family: "Instrument Serif", serif;
-  color: var(--whether);
+  color: var(--purple);
   font-size: calc(2em + 2vw);
+  overflow-x: hidden;
 }
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 /* TEXTO SUPERIOR */
 
@@ -32,13 +31,11 @@ html {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 2rem;
-  margin: 40px 0px;
   font-family: "Instrument Serif", serif;
 }
 .text-superios h1 {
   letter-spacing: 2px;
-  color: var(--whether);
+  color: var(--black);
   font-weight: bold;
   font-size: 4rem;
 }
@@ -46,7 +43,7 @@ html {
 /* FECHA  */
 
 #fecha {
-  color: var(--whether);
+  color: var(--black);
   padding: 50px 0 5px 0;
   font-size: 2.5rem;
 }
@@ -58,6 +55,7 @@ html {
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
+  background-color: var(--blue);
   font-family: "Instrument Serif", serif;
 }
 .container-form form {
@@ -166,6 +164,7 @@ textarea::placeholder {
   margin-top: 10px;
   padding: 3rem;
   color: var(--purple);
+  background-color: var(--piel);
   font-family: "Instrument Serif", serif;
 }
 .card > h3,
@@ -198,5 +197,5 @@ p {
 .footer {
   background-color: #161518;
   width: 100%;
-  height: 30vh;
+  height: 50vh;
 }
