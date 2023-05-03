@@ -17,7 +17,7 @@ let notes = JSON.parse(localStorage.getItem("notes")) || [];
 function showNotes() {
   // Vaciar el contenedor de notas
 
-  // noteContainer.innerHTML = "";
+  noteContainer.innerHTML = "";
 
   // Crear una tarjeta para cada nota
   notes.forEach((note, index) => {
@@ -84,8 +84,8 @@ function addNote() {
     const note = { title, body };
     notes.push(note);
     localStorage.setItem("notes", JSON.stringify(notes));
-    titleInput.value = "";
-    bodyInput.value = "";
+    // titleInput.value = "";
+    // bodyInput.value = "";
     showNotes();
   }
 }

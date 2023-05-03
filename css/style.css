@@ -9,15 +9,15 @@
 :root {
   --pink: #d885a3;
   --purple: #655d8a;
-  --blue: #F2F2F2;
-  --piel: #c1c1c1;
+  --blue: #dddd;
+  --piel: #f0eeed;
   --whether: #fff;
   --black: #393646;
 }
 body {
   background-color: var(--blue);
   font-family: "Instrument Serif", serif;
-  color: var(--purple);
+
   font-size: calc(2em + 2vw);
   overflow-x: hidden;
 }
@@ -26,11 +26,14 @@ html {
   scroll-behavior: smooth;
 }
 /* TEXTO SUPERIOR */
-
+.body {
+  background-color: var(--piel);
+}
 .text-superios {
   display: flex;
   justify-content: center;
   flex-direction: column;
+
   font-family: "Instrument Serif", serif;
 }
 .text-superios h1 {
@@ -62,13 +65,14 @@ html {
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  padding: 3rem;
 }
 
 .container-form .continer-input {
   background-color: var(--whether);
   border-radius: 15px;
   display: flex;
-  padding: 2rem;
+  padding: 1.5rem;
   margin-top: 15px;
   width: 500px;
   -webkit-border-radius: 15px;
@@ -86,11 +90,11 @@ html {
   outline: none;
   font-size: 2rem;
   font-weight: bold;
-  color: var(--purple);
+  color: var(--black);
 }
 input::placeholder {
   font-size: 1.5rem;
-  color: var(--purple);
+  color: var(--black);
   font-weight: bold;
   margin-left: 10px;
   font-size: 2rem;
@@ -116,7 +120,7 @@ input::placeholder {
   border: none;
   outline: none;
   font-size: 2rem;
-  color: var(--purple);
+
   font-weight: bold;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -125,7 +129,7 @@ input::placeholder {
 }
 
 textarea::placeholder {
-  color: var(--purple);
+  color: var(--black);
   font-weight: bold;
   margin-left: 10px;
   font-size: 2rem;
@@ -164,12 +168,12 @@ textarea::placeholder {
   margin-top: 10px;
   padding: 3rem;
   color: var(--purple);
-  background-color: var(--piel);
+  /* background-color: var(--piel); */
   font-family: "Instrument Serif", serif;
 }
 .card > h3,
 p {
-  color: var(--purple);
+  color: var(--black);
   font-size: 3rem;
   /* font-weight: bold; */
 }
@@ -180,7 +184,8 @@ p {
   width: 50%;
   margin-top: 10px;
   font-weight: bold;
-  background: linear-gradient(to bottom, var(--blue), var(--purple));
+  border: none;
+  background: linear-gradient(to bottom, var(--piel), var(--purple));
 }
 
 .card:hover > button {
@@ -189,13 +194,28 @@ p {
 /* agregar tarea */
 .agregadas {
   letter-spacing: 2px;
-  color: var(--whether);
+  color: var(--black);
   font-family: "Instrument Serif", serif;
   font-size: 3rem;
-  /* font-weight: bold; */
+  font-weight: bold;
 }
 .footer {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: #161518;
   width: 100%;
   height: 50vh;
+  color: var(--piel);
+}
+.footer h4 {
+  font-size: calc(2em + 2vw);
+  color: var(--piel);
+  font-family: "Instrument Serif", serif;
+}
+.footer i {
+  font-size: calc(2em + 2vw);
+  color: var(--piel);
+  font-family: "Instrument Serif", serif;
 }
