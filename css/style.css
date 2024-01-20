@@ -9,15 +9,16 @@
 :root {
   --pink: #d885a3;
   --purple: #655d8a;
-  --blue: #dddd;
+  --blue: #37b5b6;
   --piel: #f0eeed;
   --whether: #fff;
   --black: #393646;
+  --yellow: #f2f597;
 }
 body {
   background-color: var(--blue);
-  font-family: "Instrument Serif", serif;
 
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: calc(2em + 2vw);
   overflow-x: hidden;
 }
@@ -34,21 +35,24 @@ html {
   justify-content: center;
   flex-direction: column;
 
+  background-color: var(--purple);
   font-family: "Instrument Serif", serif;
 }
 .text-superios h1 {
   letter-spacing: 2px;
-  color: var(--black);
+  color: var(--yellow);
   font-weight: bold;
   font-size: 4rem;
+  margin-left: 50px;
 }
 
 /* FECHA  */
 
 #fecha {
-  color: var(--black);
-  padding: 50px 0 5px 0;
+  padding: 20px 0 5px 0;
   font-size: 2.5rem;
+  margin-left: 50px;
+  color: var(--yellow);
 }
 
 /* SECTIO FORMULARIO */
@@ -59,7 +63,6 @@ html {
   flex-direction: column;
   padding: 2rem;
   background-color: var(--blue);
-  font-family: "Instrument Serif", serif;
 }
 .container-form form {
   display: flex;
@@ -72,8 +75,9 @@ html {
   background-color: var(--whether);
   border-radius: 15px;
   display: flex;
-  padding: 1.5rem;
+  padding: 1rem;
   margin-top: 15px;
+
   width: 500px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -83,6 +87,7 @@ html {
 
 .container-form .continer-input input {
   background-color: var(--whether);
+
   width: 100%;
   height: 100%;
   border-radius: 8px;
@@ -137,6 +142,7 @@ textarea::placeholder {
 .container-form .buton {
   background-color: var(--purple);
   border-radius: 15px;
+
   display: flex;
   padding: 1rem;
   margin-top: 15px;
@@ -153,7 +159,8 @@ textarea::placeholder {
   border-radius: 8px;
   font-size: 2rem;
   font-weight: bold;
-  color: var(--whether);
+
+  color: var(--yellow);
   border: none;
 }
 /* SECTION DE LAS NOTAS */
@@ -164,37 +171,45 @@ textarea::placeholder {
   gap: 1rem;
 }
 .card {
-  /* background: linear-gradient(to bottom, var(--blue), var(--purple)); */
   margin-top: 10px;
   padding: 3rem;
   color: var(--purple);
   /* background-color: var(--piel); */
-  font-family: "Instrument Serif", serif;
+  /* font-family: "Instrument Serif", serif; */
+}
+
+.card{
+  display: flex;
+ justify-content: center;
+ align-items: center;
+
 }
 .card > h3,
 p {
   color: var(--black);
   font-size: 3rem;
-  /* font-weight: bold; */
+
+  text-align: center;
+
+  font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 .card > button {
-  color: var(--whether);
+  color: var(--yellow);
   font-size: 2rem;
   width: 50%;
   margin-top: 10px;
   font-weight: bold;
   border: none;
-  background: linear-gradient(to bottom, var(--piel), var(--purple));
+  border-radius: 10px;
+  background-color: var(--purple);
 }
 
-.card:hover > button {
-  background-color: #655d8a;
-}
+
 /* agregar tarea */
 .agregadas {
   letter-spacing: 2px;
-  color: var(--black);
+  color: var(--purple);
   font-family: "Instrument Serif", serif;
   font-size: 3rem;
   font-weight: bold;

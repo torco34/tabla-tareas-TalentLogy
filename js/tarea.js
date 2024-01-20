@@ -4,6 +4,8 @@ const titleInput = document.getElementById("title");
 const bodyInput = document.getElementById("body");
 
 const FECHA = new Date();
+
+
 fecha.innerHTML = FECHA.toLocaleDateString("es", {
   weekday: "long",
   month: "short",
@@ -23,11 +25,8 @@ function showNotes() {
   notes.forEach((note, index) => {
     const card = document.createElement("div");
     card.classList.add("card");
-
     const title = document.createElement("h3");
-
     title.textContent = note.title;
-
     const body = document.createElement("p");
     body.textContent = note.body;
 
@@ -84,8 +83,8 @@ function addNote() {
     const note = { title, body };
     notes.push(note);
     localStorage.setItem("notes", JSON.stringify(notes));
-    // titleInput.value = "";
-    // bodyInput.value = "";
+    titleInput.value = "";
+    bodyInput.value = "";
     showNotes();
   }
 }
